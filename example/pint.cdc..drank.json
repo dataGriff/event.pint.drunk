@@ -1,0 +1,54 @@
+[
+    {
+        "schemaURL": "https://hungovercoders.com",
+        "eventType": "booze.cdc.pint",
+        "eventID": "9de7b670-8b0c-4cc5-9aef-f47f19bdf587",
+        "eventTime": "2023-07-15T12:00:00Z",
+        "source": "/events/pint-poured",
+        "contentType": "application/json",
+        "data": {
+            "pintID": "d3c907b4-9e4e-4e94-8e6d-7e7243548f9c",
+            "beer": {
+                "name": "Guinness",
+                "brewery": "St. James's Gate Brewery",
+                "style": "Stout",
+                "abv": 4.2,
+                "ibu": 45,
+                "srm": 40
+            },
+            "container": {
+                "type": "bottle",
+                "upc": "083783200001"
+            },
+            "price": 8.99,
+            "quantity": 1,
+            "state": "poured"
+        }
+    },
+    {
+        "schemaURL": "https://hungovercoders.com",
+        "eventType": "booze.cdc.pint",
+        "eventID": "e87bfa91-17c6-4a7b-9b88-6f7b01f2639f",
+        "eventTime": "2023-07-15T12:00:00Z",
+        "source": "/events/pint-drunk",
+        "contentType": "application/json",
+        "data": {
+            "pintID": "d3c907b4-9e4e-4e94-8e6d-7e7243548f9c",
+            "beer": {
+                "name": "Guinness",
+                "brewery": "St. James's Gate Brewery",
+                "style": "Stout",
+                "abv": 4.2,
+                "ibu": 45,
+                "srm": 40
+            },
+            "container": {
+                "type": "bottle",
+                "upc": "083783200001"
+            },
+            "price": 8.99,
+            "quantity": 1,
+            "state": "drunk"
+        }
+    }
+]
