@@ -25,7 +25,7 @@ namespace PintDrinker
 
             var enqueueOptions = new EnqueueEventOptions
                 {
-                    PartitionKey = "PintId"
+                    PartitionKey = "Data.PintId"
                     
                 };
 
@@ -45,7 +45,7 @@ namespace PintDrinker
                 Type = "hungovercoders.booze.cdc.pint",
                 Id = Guid.NewGuid().ToString(),
                 Time = DateTime.UtcNow,
-                Source = new Uri("/events/pint-poured", UriKind.RelativeOrAbsolute),
+                Source = new Uri("/events/pint-drunk", UriKind.RelativeOrAbsolute),
                 DataContentType = "application/json",
                 Data = new
                 {
@@ -53,19 +53,24 @@ namespace PintDrinker
                     State = "drunk"
                 }
             };
+            
 
             // Serialize the Cloud Event data to JSON
             var json = JsonConvert.SerializeObject(evt);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var o = (Newtonsoft.Json.Linq.JObject)JsonConvert.DeserializeObject(json);
+            o.Property("SpecVersion").Remove();
+            Console.WriteLine(o.ToString());
 
-            var eventData = new EventData(Encoding.UTF8.GetBytes(json));
+
+            var content = new StringContent(o.ToString(), Encoding.UTF8, "application/json");
+                 
+
+            var eventData = new EventData(Encoding.UTF8.GetBytes(o.ToString()));
 
             await producer.EnqueueEventAsync(eventData, enqueueOptions);
 
             Console.WriteLine("Cloud Event sent successfully.");
-            Console.WriteLine(json);
-        
-
+   
             // Close the producer client
             await producer.CloseAsync();
         }
